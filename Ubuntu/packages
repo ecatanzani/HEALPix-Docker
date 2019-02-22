@@ -1,0 +1,10 @@
+apt-utils
+build-essential
+gfortran
+xorg
+xorg-dev
+openbox
+xauth
+git
+wget
+locate
