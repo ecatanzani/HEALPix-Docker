@@ -1,6 +1,8 @@
 apt-utils
 build-essential
 gfortran
+pgplot5
+gv
 xorg
 xorg-dev
 openbox

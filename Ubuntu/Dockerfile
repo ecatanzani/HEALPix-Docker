@@ -14,10 +14,11 @@ RUN cd /tmp \
     && git clone https://github.com/ecatanzani/HEALPix-Docker.git
 
 # Install cfitsio
-RUN cd /tmp/HEALPix-Docker/dependancies/dcfitsio \
+RUN mkdir /usr/local/cfitsio \
+    && cd /tmp/HEALPix-Docker/dependancies/dcfitsio \
     && tar -xzf cfitsio3450.tar.gz \
     && cd cfitsio \
-    && ./configure --prefix=/usr/local \
+    && ./configure --prefix=/usr/local/cfitsio \
     && make \
     && make install
 
@@ -26,15 +27,22 @@ RUN cd /tmp/HEALPix-Docker/dependancies/dg77 \
     && tar -xvf g77_pack_64bit.tar \
     &&  bash install.sh
 
+# Creating HEALPix directory
+RUN mkdir /HEALPix
+
 # Install HEalPix
-#RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX \
-#    && tar -xvf Healpix_3.50_2018Dec10.tar \
-#    && cd Healpix_3.50 \
-#    && make \
-#    && make test \
-#    && make clean \
-#    && make tidy \
-#    && make distclean
-    
+RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX \
+    && tar -zxvf Healpix_3.50_2018Dec10.tar.gz \
+    && cp -r Healpix_3.50/* /HEALPix \
+    && cd /HEALPix
+    && make \
+    && make test \
+    && make clean \
+    && make tidy \
+    && make distclean
+
+# Creating HEALPix volume
+VOLUME /HEALPix
+ 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
