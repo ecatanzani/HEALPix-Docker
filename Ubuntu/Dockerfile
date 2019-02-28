@@ -21,8 +21,20 @@ RUN cd /tmp/HEALPix-Docker/dependancies/dcfitsio \
     && make \
     && make install
 
+# Install g77 libraries
+RUN cd /tmp/HEALPix-Docker/dependancies/dg77 \
+    && tar -xvf g77_pack_64bit.tar \
+    &&  bash install.sh
+
 # Install HEalPix
-RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX
+#RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX \
+#    && tar -xvf Healpix_3.50_2018Dec10.tar \
+#    && cd Healpix_3.50 \
+#    && make \
+#    && make test \
+#    && make clean \
+#    && make tidy \
+#    && make distclean
     
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
