@@ -32,9 +32,9 @@ RUN mkdir /HEALPix
 
 # Install HEalPix
 RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX \
-    && tar -zxvf Healpix_3.50_2018Dec10.tar.gz \
-    && cp -r Healpix_3.50/* /HEALPix \
-    && cd /HEALPix
+    && tar -xvzf Healpix_3.50_2018Dec10.tar.gz \
+    && cp -r HEALPix/* /HEALPix \
+    && cd /HEALPix \
     && make \
     && make test \
     && make clean \
