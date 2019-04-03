@@ -11,3 +11,6 @@ git
 wget
 locate
 sudo
+vim
+emacs
+nano

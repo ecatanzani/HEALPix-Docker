@@ -43,6 +43,7 @@ RUN cd /tmp/HEALPix-Docker/dependancies/dHEalPiX \
 
 # Creating HEALPix volume
 VOLUME /HEALPix
+VOLUME /root
  
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
