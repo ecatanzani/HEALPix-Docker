@@ -2,11 +2,13 @@ FROM ubuntu:latest
 
 COPY packages dependancies
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # Install ubuntu base modules
 RUN apt update && apt -y upgrade \ 
     && apt install -y $(cat dependancies) \
     && updatedb
-
+    
 RUN apt install -y python3 python3-dev python3-pip
 
 # Clone git repo
